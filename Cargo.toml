@@ -1,0 +1,24 @@
+[package]
+name = "frost-custody"
+version = "0.1.0"
+edition = "2021"
+description = "t-of-n threshold Schnorr signatures (FROST) with DKG and proactive refresh over secp256k1"
+license = "MIT"
+
+[dependencies]
+# secp256k1 曲线运算（标量/点加/点乘/编解码/ECDH），RustCrypto 纯 Rust 实现
+k256 = { version = "0.13.4", features = ["ecdh", "arithmetic"] }
+# group trait（GroupEncoding），与 k256 0.13 同代
+group = "0.13"
+sha2 = "0.10"
+hkdf = "0.12"
+aes-gcm = "0.10"
+rand = "0.8"
+zeroize = { version = "1", features = ["derive"] }
+hex = "0.4"
+
+[dev-dependencies]
+# 测试里只用标准库 + 本 crate
+
+[profile.release]
+opt-level = 3
